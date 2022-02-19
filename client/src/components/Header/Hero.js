@@ -54,10 +54,7 @@ const Hero = () => {
                         <div className="container mx-auto flex flex-col items-center py-12 sm:py-24">
                             <div className="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col  mb-5 sm:mb-10">
                                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10">
-                                    Store Management System <br />
-                                    <span className="text-indigo-700"> Power By </span>
-                                    <br />
-                                    CodeCube IT Solution
+                                    <span className="text-indigo-700"> Online Shop </span>
 
                                 </h3>
                                 {/* <p className="mt-5 sm:mt-10 lg:w-10/12 text-gray-400 font-normal text-center text-sm sm:text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum ut rem suscipit. Voluptates nesciunt doloribus omnis voluptatum officia dolores odio at, veniam explicabo, adipisci laboriosam optio similique itaque! Nulla, molestiae! </p>

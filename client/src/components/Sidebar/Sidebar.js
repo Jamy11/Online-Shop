@@ -31,7 +31,7 @@ export default function Sidebar() {
             className="md:block text-xl text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
             to="/"
           >
-            স্টোর ম্যানেজমেন্ট সিস্টেম
+            Online Shop
           </Link>
 
           {/* User */}
@@ -58,7 +58,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    স্টোর ম্যানেজমেন্ট সিস্টেম
+                    Online Shop
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -87,7 +87,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase text-lg font-bold block pt-1 pb-4 no-underline">
-              প্রধান নেভিগেশন
+              Main
             </h6>
             {/* Navigation */}
 
@@ -110,7 +110,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  ড্যাশবোর্ড
+                  DashBoard
                 </Link>
               </li>
 
@@ -132,7 +132,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  প্রতিষ্ঠান
+                  Add Admmin
                 </Link>
               </li>
 
@@ -154,7 +154,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  সরবরাহকারী এবং ক্রয়াদেশ
+                  Show All Orders
                 </Link>
               </li>
 
@@ -176,7 +176,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  গ্রাহক
+                  All Product
                 </Link>
               </li>
 
@@ -198,7 +198,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  ব্যবহারকারী
+                  All User
                 </Link>
               </li>
             </ul>
@@ -209,7 +209,7 @@ export default function Sidebar() {
 
 
 
-                <p class='text-sm font-bold'>© Developed by CodeCube IT Solution.</p>
+                <p class='text-sm font-bold'>© Developed by Me.</p>
 
 
                 <div>
