@@ -2,19 +2,19 @@ module.exports = (sequelize, DataTypes) =>{
     const Products = sequelize.define("Products",{
         name:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         price:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         discount:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         image:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
     },{
         indexes: [

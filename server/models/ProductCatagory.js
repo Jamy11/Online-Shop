@@ -2,11 +2,11 @@ module.exports = (sequelize, DataTypes) =>{
     const ProductCatagory = sequelize.define("ProductCatagory",{
         name:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         image:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
     },{
         indexes: [

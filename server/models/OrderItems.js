@@ -3,11 +3,11 @@ module.exports = ( sequelize, DataTypes) =>{
     const OrderItems = sequelize.define("OrderItems",{
         qunatity:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },        
         price:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },        
     })
 

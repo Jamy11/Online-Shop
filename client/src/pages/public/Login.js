@@ -1,13 +1,10 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-// import { useForm } from "react-hook-form";
 import * as Yup from 'yup'
 import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
-    // const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { userType, user } = useAuth()
-    console.log(userType)
     
     const initialValues = {
         email: '',

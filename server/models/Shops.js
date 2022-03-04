@@ -2,15 +2,15 @@ module.exports = (sequelize, DataTypes) =>{
     const Shops = sequelize.define("Shops",{
         name:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         rating:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
         subscription:{
             type:DataTypes.STRING,
-            allowNull:false,
+            allowNull:true,
         },
     },{
         indexes: [
