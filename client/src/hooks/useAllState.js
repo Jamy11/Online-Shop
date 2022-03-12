@@ -6,6 +6,13 @@ const useAllState = () => {
     const [user, setUser] = useState({});
     const [userType, setUserType] = useState('admin');
 
+
+
+    const logOut = ()=>{
+        localStorage.removeItem('accessToken')
+        setUser({})
+    }
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/auth/verify`, {
             headers: {
@@ -25,6 +32,7 @@ const useAllState = () => {
         user,
         userType,
         setUser,
+        logOut
     }
 }
 

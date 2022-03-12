@@ -5,7 +5,7 @@ import logo from '../../images/logo.png'
 
 const Hero = () => {
     const [show, setShow] = useState(false);
-    const { user } = useAuth()
+    const { user , logOut} = useAuth()
     return (
         <div>
             <div className="bg-gray-100 overflow-y-hidden" style={{ minHeight: 700 }}>
@@ -35,7 +35,7 @@ const Hero = () => {
                                     <ul className="flex text-3xl md:text-base items-center py-10 md:flex flex-col md:flex-row justify-center fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
                                         {user?.email ?
                                             <li className="font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0">
-                                                <Link to='/dashboard'>Dashboard</Link>
+                                                Welcome <Link to='/dashboard'>  {user.username || user.email}</Link>
                                             </li>
                                             :
                                             <>
@@ -48,13 +48,20 @@ const Hero = () => {
                                             </>
 
                                         }
-                                        
+
                                         <li className="font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                                             <Link to='/admin'>Dashboard</Link>
                                         </li>
                                         <li className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                                             <Link to='/contactUs'>Contact Us</Link>
                                         </li>
+                                        {user?.email && 
+                                        <li style={{color:'red'}} className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10" onClick={logOut}>
+                                           Log Out
+                                        </li>
+
+
+                                        }
                                     </ul>
                                 </div>
                             </div>
