@@ -7,8 +7,6 @@ const useAllState = () => {
     const [userType, setUserType] = useState('');
     const [isLoading, setIsLoading] = useState(true)
 
-    console.log('user',user)
-    console.log('usertyp[e',user.type)
     const logOut = () => {
         localStorage.removeItem('accessToken')
         setUser({})

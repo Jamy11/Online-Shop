@@ -6,17 +6,20 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 
 import Dashboard from "../../views/admin/Dashboard";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import AdminSidebar from "../../components/Sidebar/AdminSidebar";
 import Settings from "../../views/admin/Settings"
 import Tables from "../../views/admin/Tables";
 import Maps from "../../views/admin/Maps";
+import useAuth from "../../hooks/useAuth";
+import ShopKeeperSidebar from "../../components/Sidebar/ShopKeeperSidebar";
 
 
 
 export default function CommonDashboard() {
+  const { user } = useAuth()
   return (
     <>
-      <Sidebar />
+      <ShopKeeperSidebar />
       <div className="relative md:ml-64 bg-blueGray-100">
 
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
