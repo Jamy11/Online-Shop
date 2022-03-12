@@ -1,17 +1,17 @@
-const verify = require('jsonwebtoken')
+const { verify } = require('jsonwebtoken')
 
 const validateToken = ( req, res, next )=>{
     const accessToken = req.header("accessToken")
 
-    if(! accessToken) return res.json({error:'User not logged in.'})
-
+    if(!accessToken) return res.json({error:'User not logged in.'})
+    
     try{
         const validToken = verify(accessToken, 'importantsecret')
-        req.email = validToken
+        req.user = validToken
         if(validToken) return next()
     }
     catch(error){
-        return res.json({error:error})
+        return res.json({error:'in catch'})
     }
 }
 
