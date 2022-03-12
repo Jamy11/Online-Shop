@@ -3,6 +3,7 @@ import logo from '../../images/logo.png'
 
 const Header = () => {
     const [show, setShow] = useState(false);
+    console.log('hello')
     return (
 
 

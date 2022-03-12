@@ -3,6 +3,7 @@ import { Formik, ErrorMessage, Field, Form } from 'formik';
 import * as Yup from 'yup'
 import axios from "axios";
 import { useHistory, useLocation } from 'react-router'
+import { Link } from 'react-router-dom';
 
 const Register = () => {
     const initialValues = {
@@ -33,7 +34,7 @@ const Register = () => {
 
                     <div className="relative mt-10 h-px bg-gray-300">
                         <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
-                            <span className="bg-white px-4 text-xs text-gray-500 uppercase">Or Login With Email</span>
+                            <span className="bg-white px-4 text-xs text-gray-500 uppercase">Or Register With Email</span>
                         </div>
                     </div>
                     <div className="mt-10">
@@ -88,14 +89,17 @@ const Register = () => {
                         </Formik>
                     </div>
                     <div className="flex justify-center items-center mt-6">
-                        <a href="#" target="_blank" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+                        <Link to='/login' className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
                             <span>
                                 <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                 </svg>
                             </span>
-                            <span className="ml-2">You don't have an account?</span>
-                        </a>
+                            <span className="ml-2">Have An Account? Log In now.</span>
+                        </Link>
+                    </div>
+                    <div className="flex justify-center items-center mt-6">
+                        <Link to='/'> GO Back</Link>
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ const useAllState = () => {
     return {
         user,
         userType,
+        setUser,
     }
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import emailjs from 'emailjs-com';
 import logo from '../../images/logo2.png'
+
 import { Link } from "react-router-dom";
 
 const Result = () => {

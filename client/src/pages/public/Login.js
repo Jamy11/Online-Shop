@@ -2,10 +2,13 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 import useAuth from '../../hooks/useAuth';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { userType, user } = useAuth()
-    
+    const { setUser } = useAuth()
+    const history = useHistory()
     const initialValues = {
         email: '',
         password: '',
@@ -17,14 +20,24 @@ const Login = () => {
     });
 
     const onSubmit = (data) => {
-        console.log('submitted')
-        console.log(data)
+        // console.log('submitted')
+        // console.log(data)
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, data).then((response) => {
+            if (response.data.error) {
+                alert(response.data.error);
+            } else {
+                localStorage.setItem("accessToken", response.data);
+                setUser({email:data.email , password:data.password})
+                history.push("/");
+            }
+        });
     }
 
     return (
         <div>
             <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-                <div className="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
+                <div className="flex flex-col bg-white shadow-md px-2 sm:px-6 md:px-8  py-8 rounded-md w-full max-w-md">
                     <div className="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
                     <div className="relative mt-10 h-px bg-gray-300">
                         <div className="absolute left-0 top-0 flex justify-center w-full -mt-2">
@@ -83,14 +96,17 @@ const Login = () => {
                         </Formik>
                     </div>
                     <div className="flex justify-center items-center mt-6">
-                        <a href="#" target="_blank" className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+                        <Link to='/register' className="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
                             <span>
                                 <svg className="h-6 w-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                                     <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                 </svg>
                             </span>
                             <span className="ml-2">You don't have an account?</span>
-                        </a>
+                        </Link>
+                    </div>
+                    <div className="flex justify-center items-center mt-6">
+                        <Link to='/'> GO Back</Link>
                     </div>
                 </div>
             </div>
