@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { setUser } = useAuth()
+    const { setUser , setIsloading} = useAuth()
     const history = useHistory()
     const initialValues = {
         email: '',
@@ -32,6 +32,7 @@ const Login = () => {
                 history.push("/");
             }
         });
+        setIsloading(false)
     }
 
     return (

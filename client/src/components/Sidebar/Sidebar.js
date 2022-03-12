@@ -25,7 +25,7 @@ export default function Sidebar() {
           >
             <i className="fas fa-bars"></i>
           </button>
-          {/* Brand */}
+          {/* Brand */}¸
 
           <Link
             className="md:block text-xl text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
@@ -213,7 +213,7 @@ export default function Sidebar() {
 
 
                 <div>
-                  <p class='text-xs font-bold pl-20'>V..f......</p>
+                  <p class='text-xs font-bold pl-20'>Hello World</p>
                 </div>
               </div>
             </footer>

@@ -50,7 +50,7 @@ const Hero = () => {
                                         }
 
                                         <li className="font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
-                                            <Link to='/admin'>Dashboard</Link>
+                                            <Link to='/dashboard'>Dashboard</Link>
                                         </li>
                                         <li className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                                             <Link to='/contactUs'>Contact Us</Link>

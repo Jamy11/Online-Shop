@@ -6,7 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 
 import Dashboard from "../../views/admin/Dashboard";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Settings from "../../views/admin/Settings"
 import Tables from "../../views/admin/Tables";
 import Maps from "../../views/admin/Maps";

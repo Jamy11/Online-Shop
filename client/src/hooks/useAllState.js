@@ -5,12 +5,13 @@ import axios from "axios";
 const useAllState = () => {
     const [user, setUser] = useState({});
     const [userType, setUserType] = useState('admin');
+    const [isLoading, setIsLoading] = useState(true)
 
 
-
-    const logOut = ()=>{
+    const logOut = () => {
         localStorage.removeItem('accessToken')
         setUser({})
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -18,21 +19,24 @@ const useAllState = () => {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             },
-        })
-            .then((response) => {
-                if (response.data.error) {
-                    setUser({});
-                } else {
-                    setUser(response.data);
-                }
-            });
+        }).then((response) => {
+            if (response.data.error) {
+                setUser({});
+            } else {
+                setUser(response.data);
+            }
+        });
+        setIsLoading(false)
+
     }, []);
 
     return {
         user,
         userType,
         setUser,
-        logOut
+        logOut,
+        isLoading,
+        setIsLoading
     }
 }
 
