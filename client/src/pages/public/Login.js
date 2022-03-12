@@ -27,8 +27,8 @@ const Login = () => {
             if (response.data.error) {
                 alert(response.data.error);
             } else {
-                localStorage.setItem("accessToken", response.data);
-                setUser({email:data.email , password:data.password})
+                localStorage.setItem("accessToken", response.data.accessToken);
+                setUser(response.data.user)
                 history.push("/");
             }
         });

@@ -3,15 +3,11 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/public/Home';
 import Login from './pages/public/Login';
-import Admin from './pages/CommonDashboard/Admin'
-// import Auth from './components/layouts/Auth'
-
-
-
+import CommonDashboard from './pages/CommonDashboard/CommonDashboard'
 import ContactUs from './pages/public/ContactUs';
 import Register from './pages/public/Register';
 import AuthProvider from './context/AuthProvider';
-import Dashboard from './views/admin/Dashboard';
+
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 function App() {
@@ -22,7 +18,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <PrivateRoute path='/dashboard'>
-                <Admin />
+                <CommonDashboard />
             </PrivateRoute>
             {/* <Route exact path='/dashboard' component={Dashboard} /> */}
             {/* <Route path="/admin" component={Admin} /> */}

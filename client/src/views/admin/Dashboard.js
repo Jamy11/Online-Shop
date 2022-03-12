@@ -1,10 +1,7 @@
 import React from "react";
 
-// components
-
-
-
 export default function Dashboard() {
+  console.log('from hello')
   return (
 
     <>

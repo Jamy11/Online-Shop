@@ -4,10 +4,11 @@ import axios from "axios";
 
 const useAllState = () => {
     const [user, setUser] = useState({});
-    const [userType, setUserType] = useState('admin');
+    const [userType, setUserType] = useState('');
     const [isLoading, setIsLoading] = useState(true)
 
-
+    console.log('user',user)
+    console.log('usertyp[e',user.type)
     const logOut = () => {
         localStorage.removeItem('accessToken')
         setUser({})
@@ -22,8 +23,10 @@ const useAllState = () => {
         }).then((response) => {
             if (response.data.error) {
                 setUser({});
+                setUserType('')
             } else {
                 setUser(response.data);
+                setUserType(response.data.type)
             }
         });
         setIsLoading(false)
