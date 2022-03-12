@@ -18,7 +18,6 @@ const useAllState = () => {
                 } else {
                     setUser(response.data);
                 }
-                // console.log(response.data)
             });
     }, []);
 
