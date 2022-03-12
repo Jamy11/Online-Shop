@@ -100,7 +100,7 @@ export default function ShopKeeperSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/dashboard/admin"
+                  to="/dashboard/shopkeeper"
                 >
                   <i
                     className={
@@ -122,7 +122,7 @@ export default function ShopKeeperSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/settings"
+                  to="/dashboard/edit-profile"
                 >
                   <i
                     className={
@@ -132,7 +132,7 @@ export default function ShopKeeperSidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Add Admmin
+                  Edit Profile
                 </Link>
               </li>
 
@@ -144,7 +144,7 @@ export default function ShopKeeperSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/tables"
+                  to="/dashboard/add-shops"
                 >
                   <i
                     className={
@@ -154,7 +154,7 @@ export default function ShopKeeperSidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Show All Orders
+                  Add Shops
                 </Link>
               </li>
 
@@ -166,7 +166,7 @@ export default function ShopKeeperSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/maps"
+                  to="/dashboard/show-all-shops"
                 >
                   <i
                     className={
@@ -176,7 +176,29 @@ export default function ShopKeeperSidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  All Product
+                  Show All Shops
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/tables") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/dashboard/add-produts"
+                >
+                  <i
+                    className={
+                      "fas fa-shopping-cart mr-2 text-base " +
+                      (window.location.href.indexOf("/admin/tables") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Add Products
                 </Link>
               </li>
 
@@ -188,17 +210,17 @@ export default function ShopKeeperSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/maps"
+                  to="/dashboard/show-all-products"
                 >
                   <i
                     className={
-                      "fas fa-users mr-2 text-lg" +
+                      "fas fa-user-friends mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/maps") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  All User
+                  Show All Products
                 </Link>
               </li>
             </ul>
