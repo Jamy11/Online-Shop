@@ -6,6 +6,7 @@ const useAllState = () => {
     const [user, setUser] = useState({});
     const [userType, setUserType] = useState('');
     const [isLoading, setIsLoading] = useState(true)
+    const [userAllInfo, setUserAllInfo] = useState({});
 
     const logOut = () => {
         localStorage.removeItem('accessToken')
@@ -37,7 +38,9 @@ const useAllState = () => {
         setUser,
         logOut,
         isLoading,
-        setIsLoading
+        setIsLoading,
+        userAllInfo, 
+        setUserAllInfo
     }
 }
 

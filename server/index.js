@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 const db = require('./models')
 
 app.use("/auth", require('./routes/Auth'));
+app.use("/shopkeeper", require('./routes/ShopKeeper/Profile'));
 
 app.get('/', (req, res) => {
     res.send('Server Started!')
