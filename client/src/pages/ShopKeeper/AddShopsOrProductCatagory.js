@@ -22,7 +22,6 @@ function AddShopsOrProductCatagory() {
                     accessToken: localStorage.getItem("accessToken"),
                 }
             }).then(res => {
-                console.log(res)
                 if (res.data.error) {
                     alert("Shop Name Must be uniqe")
                 }

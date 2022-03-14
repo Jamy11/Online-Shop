@@ -1,22 +1,63 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import * as Yup from 'yup'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 
 const AddProduct = () => {
 
+    const { showAddProduct, setShowAddProduct,
+        productCatagoryList, setProductCatagoryList, productCatagoryLoading, setProductCatagoryLoading,
+        shopList, setShopList, shopLoading, setShopLoading } = useAuth()
     // check if he is eligiable to add product
+    const changeEveryState = (shop, productCategory) => {
+        //changin all loading state
+        setShowAddProduct(true)
+        setProductCatagoryLoading(false)
+        setShopLoading(false)
 
-    useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`,{
-            headers:{
+        // adding list to state
+        setShopList(shop)
+        setProductCatagoryList(productCategory)
+    }
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`, {
+            headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
-        }).then(res=>{
-
+        }).then(res => {
+            if (res.data.productCatagoryList.length === 0 || res.data.shopList.length === 0) {
+                setShowAddProduct(false)
+            }
+            else {
+                changeEveryState(res.data.shopList, res.data.productCatagoryList)
+            }
         })
-    },[])
+    }, [])
+
+    if (showAddProduct === false) {
+        return (
+            <>
+                <div className='mt-24'>
+                    <h1 style={{ color: 'red' }} className='text-center font-bold text-2xl'>Please Add Shop AND PRODUCT</h1>
+
+                </div>
+            </>
+        )
+    }
+
+    if (shopLoading || productCatagoryLoading) {
+        return (
+            <>
+                <div className='mt-24'>
+                    <h1 style={{ color: 'red' }} className='text-center font-bold text-2xl'>Please Wait</h1>
+
+                </div>
+            </>
+        )
+    }
 
 
 
@@ -25,15 +66,32 @@ const AddProduct = () => {
         name: Yup.string().min(4).max(20).required("You must input a Name!"),
         price: Yup.number().integer().required('Please Fill the form'),
         discount: Yup.number().integer().required('Please Fill the form'),
+        ShopId: Yup.number().integer().required('Please Fill the form'),
+        ProductCatagoryId: Yup.number().integer().required('Please Fill the form'),
     });
     const initialValues = {
         name: '',
         price: '',
-        discount: ''
+        discount: '',
+        ShopId: '',
+        ProductCatagoryId:''
     }
     const onSubmit = (data, onSubmitProps) => {
-        console.log(data)
 
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/products//add-product-catagory`, data, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            }
+        }).then(res => {
+            if (res.data.error) {
+                alert("Failed")
+            }
+            else {
+                alert('product Added')
+                onSubmitProps.resetForm()
+            }
+
+        })
 
     }
 
@@ -70,6 +128,38 @@ const AddProduct = () => {
                     </label>
                     <Field type="text" id="image" name='image' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Image" />
                     <ErrorMessage style={{ color: 'red' }} name="image" component="span" />
+                </div>
+
+                <div className="mb-6">
+                    <Field as="select" name="ShopId" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                        <option value=''>Select Shop Name</option>
+                        {shopList.map(item =>
+                            <>
+                                <option value={item.id}>{item.name}</option>
+
+                            </>
+                        )}
+                    </Field>
+                    <ErrorMessage className='mt-2' style={{ color: 'red' }} name="ShopId" component="span" />
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    </div>
+                </div>
+                <div className="mb-6">
+                    <Field as="select" name="ProductCatagoryId" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                        <option value=''>Please Select Product catagory</option>
+                        {productCatagoryList.map(item =>
+                            <>
+                                <option value={item.id}>{item.name}</option>
+
+                            </>
+                        )}
+
+                    </Field>
+                    <ErrorMessage className='mt-2' style={{ color: 'red' }} name="ProductCatagoryId" component="span" />
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                    </div>
                 </div>
 
                 <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
