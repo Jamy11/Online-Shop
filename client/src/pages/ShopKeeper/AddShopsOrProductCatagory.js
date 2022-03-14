@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom"
 function AddShopsOrProductCatagory() {
 
     const location = useLocation()
-    console.log(location.pathname)
 
     const validationSchema = Yup.object().shape({
         name: Yup.string().min(4).max(20).required("You must input a Name!"),
