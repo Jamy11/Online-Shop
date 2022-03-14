@@ -15,7 +15,7 @@ function AddShopsOrProductCatagory() {
         name: '',
     }
     const onSubmit = (data, onSubmitProps) => {
-        console.log(onSubmitProps)
+
         if (location.pathname === '/dashboard/add-shops') {
             axios.post(`${process.env.REACT_APP_BACKEND_URL}/shop/add-shop`, data, {
                 headers: {

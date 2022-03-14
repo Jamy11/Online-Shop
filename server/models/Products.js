@@ -16,13 +16,6 @@ module.exports = (sequelize, DataTypes) =>{
             type:DataTypes.STRING,
             allowNull:true,
         },
-    },{
-        indexes: [
-            {
-                unique: true,
-                fields: ['name']
-            }
-        ]
     })
 
     Products.associate = (models )=>{

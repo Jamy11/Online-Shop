@@ -59,19 +59,23 @@ module.exports = ( sequelize, DataTypes) =>{
     Users.associate = ( models) =>{
         Users.hasMany( models.Shops, {
             onDelete: "cascade",
-            allowNull:true,
+            allowNull:false,
         }),
         Users.hasMany( models.Reviews, {
             onDelete: "CASCADE",
-            allowNull:true,
+            allowNull:false,
         }),
         Users.hasMany( models.Orders, {
             onDelete: "CASCADE",
-            allowNull:true,
+            allowNull:false,
         }),
         Users.hasMany( models.ProductCatagory, {
             onDelete: "CASCADE",
-            allowNull:true,
+            allowNull:false,
+        }),
+        Users.hasMany( models.Products, {
+            onDelete: "CASCADE",
+            allowNull:false,
         })
     }
 

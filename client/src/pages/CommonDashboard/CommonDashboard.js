@@ -18,6 +18,7 @@ import EditProfile from "../ShopKeeper/EditProfile";
 import AddShopsOrProductCatagory from "../ShopKeeper/AddShopsOrProductCatagory";
 import ShowShop from "../ShopKeeper/ShowShop";
 import ShowProductCatagory from "../ShopKeeper/ShowProductCatagory";
+import AddProduct from "../ShopKeeper/AddProduct";
 
 
 
@@ -51,7 +52,7 @@ export default function CommonDashboard() {
                   <Route path="/dashboard/show-all-shops" component={ShowShop} />
                   <Route path="/dashboard/add-product-catagory" component={AddShopsOrProductCatagory} />
                   <Route path="/dashboard/show-all-product-catagory" component={ShowProductCatagory} />
-                  <Route path="/dashboard/add-produts" component={Tables} />
+                  <Route path="/dashboard/add-produts" component={AddProduct} />
                   <Route path="/dashboard/show-all-products" component={Tables} />
                   <Redirect from="/dashboard" to="/dashboard/shopkeeper" />
                 </Switch>
