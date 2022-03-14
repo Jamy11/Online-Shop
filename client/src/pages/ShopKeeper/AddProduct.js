@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import * as Yup from 'yup'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import axios from "axios";
-import { useEffect } from 'react/cjs/react.production.min';
+
 
 const AddProduct = () => {
 
@@ -14,7 +14,7 @@ const AddProduct = () => {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res=>{
-            setUserAllInfo(res.data)
+
         })
     },[])
 

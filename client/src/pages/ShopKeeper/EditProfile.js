@@ -28,7 +28,7 @@ const Index = () => {
     })
     const onSubmit = (data) => {
         // console.log(data)
-        axios.put(`${process.env.REACT_APP_BACKEND_URL}/shopkeeper/edit-profile`, data, {
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/profile/edit-profile`, data, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }

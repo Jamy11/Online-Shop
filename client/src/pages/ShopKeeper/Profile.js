@@ -6,7 +6,7 @@ const Index = () => {
 
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/shopkeeper`,{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/profile`,{
             headers:{
                 accessToken: localStorage.getItem("accessToken"),
             }
