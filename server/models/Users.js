@@ -68,6 +68,10 @@ module.exports = ( sequelize, DataTypes) =>{
         Users.hasMany( models.Orders, {
             onDelete: "CASCADE",
             allowNull:true,
+        }),
+        Users.hasMany( models.ProductCatagory, {
+            onDelete: "CASCADE",
+            allowNull:true,
         })
     }
 

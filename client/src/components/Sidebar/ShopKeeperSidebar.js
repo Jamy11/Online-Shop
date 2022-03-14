@@ -180,6 +180,54 @@ export default function ShopKeeperSidebar() {
                 </Link>
               </li>
 
+
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/tables") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/dashboard/add-product-catagory"
+                >
+                  <i
+                    className={
+                      "fas fa-shopping-cart mr-2 text-base " +
+                      (window.location.href.indexOf("/admin/tables") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Add Products Catagory
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs uppercase py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/maps") !== -1
+                      ? "text-lightBlue-500 hover:text-lightBlue-600"
+                      : "text-blueGray-700 hover:text-blueGray-500")
+                  }
+                  to="/dashboard/show-all-product-catagory"
+                >
+                  <i
+                    className={
+                      "fas fa-user-friends mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/maps") !== -1
+                        ? "opacity-75"
+                        : "text-blueGray-300")
+                    }
+                  ></i>{" "}
+                  Show All Products Catagory
+                </Link>
+              </li>
+
+
+
               <li className="items-center">
                 <Link
                   className={

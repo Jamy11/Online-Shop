@@ -12,6 +12,7 @@ const db = require('./models')
 app.use("/auth", require('./routes/Auth'));
 app.use("/shopkeeper", require('./routes/ShopKeeper/Profile'));
 app.use("/shop", require('./routes/ShopKeeper/Shops'));
+app.use("/product-catagory", require('./routes/ShopKeeper/ProductCatagory'));
 
 app.get('/', (req, res) => {
     res.send('Server Started!')
