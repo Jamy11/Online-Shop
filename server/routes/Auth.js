@@ -8,10 +8,6 @@ const { validateToken } = require('../middleware/AuthMiddleware')
 // register
 router.post('/', async(req, res) => {
   const { email, password, type } = req.body;
-  // const user = await Users.findOne({ where: { email:email } })
-  // if ( user ) 
-  // return res.json({ error: 'Please select a different username.' });
-  // else{
     bcrypt.hash(password, 10).then((hash) => {
       Users.create({
         email: email,
@@ -21,10 +17,7 @@ router.post('/', async(req, res) => {
         console.log(err)
         res.json({error:'Please select a different username.'})
       })
-  
-  
     });
-  // }
 })
 
 

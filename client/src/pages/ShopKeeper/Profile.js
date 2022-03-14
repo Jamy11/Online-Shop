@@ -15,7 +15,6 @@ const Index = () => {
         })
     }, [])
     
-    // console.log(userAllInfo)
     
     return (
         <div id="login" >
