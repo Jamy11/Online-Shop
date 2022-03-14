@@ -1,10 +1,26 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import * as Yup from 'yup'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import axios from "axios";
+import { useEffect } from 'react/cjs/react.production.min';
 
 const AddProduct = () => {
 
+    // check if he is eligiable to add product
+
+    useEffect(()=>{
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`,{
+            headers:{
+                accessToken: localStorage.getItem("accessToken"),
+            }
+        }).then(res=>{
+            setUserAllInfo(res.data)
+        })
+    },[])
+
+
+
+    /// form releated work
     const validationSchema = Yup.object().shape({
         name: Yup.string().min(4).max(20).required("You must input a Name!"),
         price: Yup.number().integer().required('Please Fill the form'),
