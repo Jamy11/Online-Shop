@@ -16,6 +16,7 @@ import CustomerSidebar from "../../components/Sidebar/CustomerSidebar";
 import Profile from "../ShopKeeper/Profile";
 import EditProfile from "../ShopKeeper/EditProfile";
 import AddShops from "../ShopKeeper/AddShops";
+import ShowShop from "../ShopKeeper/ShowShop";
 
 
 
@@ -46,7 +47,7 @@ export default function CommonDashboard() {
                   <Route path="/dashboard/shopkeeper" component={Profile} />
                   <Route path="/dashboard/edit-profile" component={EditProfile} />
                   <Route path="/dashboard/add-shops" component={AddShops} />
-                  <Route path="/dashboard/show-all-shops" component={Tables} />
+                  <Route path="/dashboard/show-all-shops" component={ShowShop} />
                   <Route path="/dashboard/add-produts" component={Tables} />
                   <Route path="/dashboard/show-all-products" component={Tables} />
                   <Redirect from="/dashboard" to="/dashboard/shopkeeper" />
