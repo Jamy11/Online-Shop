@@ -1,65 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+const EditProduct = () => {
 
+    const { id } = useParams()
 
-const AddProduct = () => {
+    const history = useHistory()
 
-    const { showAddProduct, setShowAddProduct,
-        productCatagoryList, setProductCatagoryList, productCatagoryLoading, setProductCatagoryLoading,
-        shopList, setShopList, shopLoading, setShopLoading } = useAuth()
-    // check if he is eligiable to add product
-    const changeEveryState = (shop, productCategory) => {
-        //changin all loading state
-        setShowAddProduct(true)
-        setProductCatagoryLoading(false)
-        setShopLoading(false)
+    const [product, setProduct] = useState({})
+    const [shopList, setShopList] = useState({})
+    const [productCatagoryList, setProductCatagoryList] = useState({})
+    const [loading, setLoading] = useState(true)
 
-        // adding list to state
-        setShopList(shop)
-        setProductCatagoryList(productCategory)
-    }
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/products/edit-products/${id}`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            if (res.data.productCatagoryList.length === 0 || res.data.shopList.length === 0) {
-                setShowAddProduct(false)
-            }
-            else {
-                changeEveryState(res.data.shopList, res.data.productCatagoryList)
-            }
+            setProduct(res.data.product)
+            setShopList(res.data.shopList)
+            setProductCatagoryList(res.data.productCatagoryList)
+            setLoading(false)
         })
     }, [])
-
-    if (showAddProduct === false) {
-        return (
-            <>
-                <div className='mt-24'>
-                    <h1 style={{ color: 'red' }} className='text-center font-bold text-2xl'>Please Add Shop AND PRODUCT</h1>
-
-                </div>
-            </>
-        )
-    }
-
-    if ( shopLoading || productCatagoryLoading) {
-        return (
-            <>
-                <div className='mt-24'>
-                    <h1 style={{ color: 'red' }} className='text-center font-bold text-2xl'>Please Wait</h1>
-
-                </div>
-            </>
-        )
-    }
-
-
 
     /// form releated work
     const validationSchema = Yup.object().shape({
@@ -70,15 +38,16 @@ const AddProduct = () => {
         ProductCatagoryId: Yup.number().integer().required('Please Fill the form'),
     });
     const initialValues = {
-        name: '',
-        price: '',
-        discount: '',
-        ShopId: '',
-        ProductCatagoryId:''
+        name: product.name || '',
+        price: product.price || '',
+        discount: product.discount || '',
+        image: product.image || '',
+        ShopId: product.ShopId || '',
+        ProductCatagoryId: product.ProductCatagoryId || ''
     }
     const onSubmit = (data, onSubmitProps) => {
-
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/products/add-product`, data, {
+        console.log(data)
+        axios.put(`${process.env.REACT_APP_BACKEND_URL}/products/edit-products/${product.id}`, data, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
@@ -87,31 +56,43 @@ const AddProduct = () => {
                 alert("Failed")
             }
             else {
-                alert('product Added')
-                onSubmitProps.resetForm()
+                alert('product Edited')
+                history.push('/dashboard/show-all-products')
             }
 
         })
+    }
 
+    console.log(product.name)
+
+    if (loading) {
+        return (
+            <>
+                <div className='mt-24'>
+                    <h1 style={{ color: 'red' }} className='text-center font-bold text-2xl'>Please Add Shop AND PRODUCT</h1>
+
+                </div>
+            </>
+        )
     }
 
     return (
         <Formik onSubmit={onSubmit} initialValues={initialValues} validationSchema={validationSchema}>
             <Form className="mt-24 p-12">
-                <h1 className='text-center font-bold text-2xl'>Add Product</h1>
+                <h1 className='text-center font-bold text-2xl'>Edit Product</h1>
 
                 <div className="mb-6">
                     <label for="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                        Add Product Name
+                        Add Product Name {product.name}
                     </label>
-                    <Field type="text" id="name" name='name' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product Name" />
+                    <Field type="text" defaultValue={product.name} id="name" name='name' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     <ErrorMessage style={{ color: 'red' }} name="name" component="span" />
                 </div>
                 <div className="mb-6">
                     <label for="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                         Add Price for 1 or Single item
                     </label>
-                    <Field type="number" id="price" name='price' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Price" />
+                    <Field type="number" defaultValue={product.price} id="price" name='price' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     <ErrorMessage style={{ color: 'red' }} name="price" component="span" />
                 </div>
 
@@ -119,21 +100,21 @@ const AddProduct = () => {
                     <label for="discount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                         Discount
                     </label>
-                    <Field type="number" id="discount" name='discount' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Discount" />
+                    <Field type="number" defaultValue={product.discount} id="discount" name='discount' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     <ErrorMessage style={{ color: 'red' }} name="discount" component="span" />
                 </div>
                 <div className="mb-6">
                     <label for="image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                         Image
                     </label>
-                    <Field type="text" id="image" name='image' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Image" />
+                    <Field type="text" id="image" defaultValue={product?.image} name='image' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Image" />
                     <ErrorMessage style={{ color: 'red' }} name="image" component="span" />
                 </div>
 
                 <div className="mb-6">
                     <Field as="select" name="ShopId" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                        <option value=''>Select Shop Name</option>
-                        {shopList.map(item =>
+                        {/* <option value={product.ShopId}>{product.Shop.name}</option> */}
+                        {shopList.length > 1 && shopList.map(item =>
                             <>
                                 <option value={item.id}>{item.name}</option>
 
@@ -147,8 +128,8 @@ const AddProduct = () => {
                 </div>
                 <div className="mb-6">
                     <Field as="select" name="ProductCatagoryId" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-                        <option value=''>Please Select Product catagory</option>
-                        {productCatagoryList.map(item =>
+                        {/* <option value={product.ProductCatagoryId}>{product.ProductCatagory.name}</option> */}
+                        {productCatagoryList.length > 1 && productCatagoryList.map(item =>
                             <>
                                 <option value={item.id}>{item.name}</option>
 
@@ -168,4 +149,4 @@ const AddProduct = () => {
     )
 }
 
-export default AddProduct
+export default EditProduct

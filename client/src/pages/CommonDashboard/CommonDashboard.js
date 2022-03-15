@@ -20,6 +20,7 @@ import ShowShop from "../ShopKeeper/ShowShop";
 import ShowProductCatagory from "../ShopKeeper/ShowProductCatagory";
 import AddProduct from "../ShopKeeper/AddProduct";
 import ShowProduct from "../ShopKeeper/ShowProduct";
+import EditProduct from "../ShopKeeper/EditProduct";
 
 
 
@@ -55,6 +56,7 @@ export default function CommonDashboard() {
                   <Route path="/dashboard/show-all-product-catagory" component={ShowProductCatagory} />
                   <Route path="/dashboard/add-produts" component={AddProduct} />
                   <Route path="/dashboard/show-all-products" component={ShowProduct} />
+                  <Route path="/dashboard/edit-product/:id" component={EditProduct} />
                   <Redirect from="/dashboard" to="/dashboard/shopkeeper" />
                 </Switch>
               </>

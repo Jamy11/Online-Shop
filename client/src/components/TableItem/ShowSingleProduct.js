@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 
 const ShowSingleProduct = ({ item, deleteProduct }) => {
-    const [show, setShow] = useState(null);
+    const history = useHistory()
+    
+    const goToEditProfile = (id)=>{
+        history.push(`/dashboard/edit-product/${id}`)
+    }
     return (
         <>
             <tr className="h-16 border border-gray-100 rounded">
@@ -25,8 +30,8 @@ const ShowSingleProduct = ({ item, deleteProduct }) => {
                     <div className="relative px-5 pt-2">
 
                         <div className="  ">
-                            <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white">
-                                <p>Edit</p>
+                            <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={()=>goToEditProfile(item.id)}>
+                                <p >Edit</p>
                             </div>
                             <div className="text-xs w-full hover:bg-indigo-700 py-4 px-4 cursor-pointer hover:text-white" onClick={() => deleteProduct(item.id)} >
                                 <p >Delete</p>
