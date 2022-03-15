@@ -48,7 +48,7 @@ const AddProduct = () => {
         )
     }
 
-    if (shopLoading || productCatagoryLoading) {
+    if ( shopLoading || productCatagoryLoading) {
         return (
             <>
                 <div className='mt-24'>

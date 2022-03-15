@@ -76,6 +76,8 @@ module.exports = ( sequelize, DataTypes) =>{
         Users.hasMany( models.Products, {
             onDelete: "CASCADE",
             allowNull:false,
+            foreignKey: 'UserId',
+            sourceKey: 'id'
         })
     }
 
