@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import TableItem from "../../components/TableItem/TableItem";
+import ShowSingleProduct from "../../components/TableItem/ShowSingleProduct";
 import useAuth from "../../hooks/useAuth";
 
 function ShowProduct() {
+    const [show, setShow] = useState(null);
     const { productList,
         setProductList,
         productLoading,
@@ -14,11 +15,10 @@ function ShowProduct() {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            console.log(res.data)
-            // setProductList(res.data)
-            // setProductLoading(false)
+            setProductList(res.data)
+            setProductLoading(false)
         })
-    }, [])
+    }, [productList])
 
     if (productLoading) {
         return (
@@ -28,6 +28,17 @@ function ShowProduct() {
         )
     }
 
+    const deleteProduct = (id)=>{
+        console.log(id)
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/products/delete/${id}` , {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            }
+        }).then(res => {
+            // setProductList(res.data)
+            // setProductLoading(false)
+        })
+    }
     return (
         <>
             <div>
@@ -60,7 +71,33 @@ function ShowProduct() {
                         <div className="mt-7 overflow-x-auto">
                             <table className="w-full whitespace-nowrap">
                                 <tbody>
-                                    {/* {productList.map(item => <TableItem key={item.id} item={item} />)} */}
+                                    <tr className="h-16 border border-gray-100 rounded">
+
+                                        <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">Product name</p>
+                                            </div>
+                                        </td>
+                                        <td className="pl-24">
+                                            <div className="flex items-center">
+                                                <p className="text-sm leading-none text-gray-600 ml-2">Shop Name</p>
+                                            </div>
+                                        </td>
+                                        <td className="pl-24">
+                                            <div className="flex items-center">
+                                                <p className="text-sm leading-none text-gray-600 ml-2">Product Category Name</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="relative px-5 pt-2">
+                                                <div className="flex items-center">
+                                                    <p className="text-sm leading-none text-gray-600 ml-2">Edit / Delete</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr className="h-3" />
+                                    {productList.map(item => <ShowSingleProduct key={item.id} item={item} deleteProduct={deleteProduct}/>)}
                                 </tbody>
                             </table>
                         </div>
