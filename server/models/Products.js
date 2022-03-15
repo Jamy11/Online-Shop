@@ -25,14 +25,16 @@ module.exports = (sequelize, DataTypes) =>{
         Products.hasMany( models.OrderItems, {
             onDelete: "CASCADE"
         }),
-        Products.belongsTo( models.Users, {
-            foreignKey: 'id',
-        }),
+
+        // foreign key
         Products.belongsTo( models.Shops, {
-            foreignKey: 'id',
+            foreignKey: 'ShopId',
         }),
         Products.belongsTo( models.ProductCatagory, {
-            foreignKey: 'id',
+            foreignKey: 'ProductCatagoryId',
+        }),
+        Products.belongsTo( models.Users, {
+            foreignKey: 'UserId',
         })
     }
 
