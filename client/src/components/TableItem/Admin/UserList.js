@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 
-const UserList = ( {user , deleteUser} ) => {
-  return (
-    <>
+const UserList = ({ user, deleteUser }) => {
+    return (
+        <>
             <tr className="h-16 border border-gray-100 rounded">
 
-            <td className>
+                <td className>
                     <div className="flex items-center pl-5">
                         <p className="text-base font-medium leading-none text-gray-700 mr-2">{user.email}</p>
                     </div>
@@ -14,7 +14,7 @@ const UserList = ( {user , deleteUser} ) => {
 
                 <td className>
                     <div className="flex items-center pl-5">
-                        <p className="text-base font-medium leading-none text-gray-700 mr-2">{user.username === ('' || null) ? 'Not Given' :user?.username}</p>
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">{user.username === ('' || null) ? 'Not Given' : user?.username}</p>
                     </div>
                 </td>
                 <td>
@@ -31,7 +31,7 @@ const UserList = ( {user , deleteUser} ) => {
             </tr>
             <tr className="h-3" />
         </>
-  )
+    )
 }
 
 export default UserList

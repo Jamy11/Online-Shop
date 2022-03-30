@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react'
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import UserList from '../../components/TableItem/Admin/UserList';
+import ShowSingelShop from '../../components/TableItem/Admin/ShowSingelShop';
 
-const ShowAllUsers = () => {
 
-    const { userList,
-        setUserList,
-        userLoading,
-        setUserLoading } = useAuth()
+const ShowAllShop = () => {
+    const { shopList,
+        setShopList,
+        shopLoading,
+        setShopLoading } = useAuth()
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/all-users`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin//all-shops`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            setUserList(res.data)
-            setUserLoading(false)
+            setShopList(res.data)
+            setShopLoading(false)
         })
-    }, [userList])
+    }, [shopList])
 
-    if (userLoading) {
+    if (shopLoading) {
         return (
             <>
                 <h1 className="mt-24">Loading</h1>
@@ -28,17 +28,17 @@ const ShowAllUsers = () => {
         )
     }
 
-    const deleteUser = (id)=>{
-        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/delete/${id}` , {
+    const deleteShop = (id) => {
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/all-shops/delete/${id}`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            // setUserList(res.data)
-            // setUserLoading(false)
+
         })
     }
 
+    // console.log(shopList)
     return (
         <>
             <div>
@@ -75,25 +75,32 @@ const ShowAllUsers = () => {
 
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">User Email</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Shop Name</p>
                                             </div>
                                         </td>
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">User Name</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Name</p>
                                             </div>
                                         </td>
-                                       
+
+                                        <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Id</p>
+                                            </div>
+                                        </td>
+
                                         <td>
                                             <div className="relative px-5 pt-2">
                                                 <div className="flex items-center">
-                                                    <p className="text-sm leading-none text-gray-600 ml-2">Delete</p>
+                                                    <p className="text-sm leading-none font-bold text-gray-600 ml-2">Delete</p>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr className="h-3" />
-                                    {userList.map(user => <UserList key={user.id} user={user} deleteUser={deleteUser} />)}
+                                    {shopList.map(shop => <ShowSingelShop key={shop.id} shop={shop} deleteShop={deleteShop} />)}
+
                                 </tbody>
                             </table>
                         </div>
@@ -109,4 +116,4 @@ const ShowAllUsers = () => {
     )
 }
 
-export default ShowAllUsers
+export default ShowAllShop

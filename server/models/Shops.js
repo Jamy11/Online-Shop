@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) =>{
         Shops.hasMany( models.Products, {
             onDelete: "CASCADE",
             allowNull:false,
+        }),
+
+        Shops.belongsTo(models.Users, {
+            foreignKey: 'UserId',
         })
     }
 
