@@ -13,8 +13,8 @@ import Maps from "../../views/admin/Maps";
 import useAuth from "../../hooks/useAuth";
 import ShopKeeperSidebar from "../../components/Sidebar/ShopKeeperSidebar";
 import CustomerSidebar from "../../components/Sidebar/CustomerSidebar";
-import Profile from "../ShopKeeper/Profile";
-import EditProfile from "../ShopKeeper/EditProfile";
+import Profile from "../PrivateCommon/Profile";
+import EditProfile from "../PrivateCommon/EditProfile";
 import AddShopsOrProductCatagory from "../ShopKeeper/AddShopsOrProductCatagory";
 import ShowShop from "../ShopKeeper/ShowShop";
 import ShowProductCatagory from "../ShopKeeper/ShowProductCatagory";
@@ -38,11 +38,11 @@ export default function CommonDashboard() {
           {user.type === 'Admin' ?
             // admin route
             <Switch>
-              <Route path="/dashboard/admin" component={Dashboard} />
+              <Route path="/dashboard/admin" component={Profile} />
               <Route path="/admin/maps" component={Maps} />
               <Route path="/admin/settings" component={Settings} />
               <Route path="/admin/tables" component={Tables} />
-              {/* <Redirect from="/dashboard" to="/admin/dashboard" /> */}
+              <Redirect from="/dashboard/" to="/dashboard/admin" />
             </Switch> :
             user.type === 'ShopKeeper' ?
               // shopkeeper route

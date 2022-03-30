@@ -66,6 +66,7 @@ const AddProduct = () => {
         name: Yup.string().min(4).max(20).required("You must input a Name!"),
         price: Yup.number().integer().required('Please Fill the form'),
         discount: Yup.number().integer().required('Please Fill the form'),
+        quantity: Yup.number().integer().required('Please Fill the form'),
         ShopId: Yup.number().integer().required('Please Fill the form'),
         ProductCatagoryId: Yup.number().integer().required('Please Fill the form'),
     });
@@ -73,11 +74,13 @@ const AddProduct = () => {
         name: '',
         price: '',
         discount: '',
+        quantity: '',
+        status: false,
         ShopId: '',
         ProductCatagoryId:''
     }
     const onSubmit = (data, onSubmitProps) => {
-
+        // console.log(data)
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/products/add-product`, data, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
@@ -122,6 +125,15 @@ const AddProduct = () => {
                     <Field type="number" id="discount" name='discount' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Discount" />
                     <ErrorMessage style={{ color: 'red' }} name="discount" component="span" />
                 </div>
+
+                <div className="mb-6">
+                    <label for="quantity" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        Add quantity 
+                    </label>
+                    <Field type="number" id="quantity" name='quantity' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="quantity" />
+                    <ErrorMessage style={{ color: 'red' }} name="quantity" component="span" />
+                </div>
+
                 <div className="mb-6">
                     <label for="image" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                         Image

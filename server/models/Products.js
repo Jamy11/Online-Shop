@@ -12,10 +12,19 @@ module.exports = (sequelize, DataTypes) =>{
             type:DataTypes.STRING,
             allowNull:true,
         },
+        quantity:{
+            type: DataTypes.STRING,
+            allowNull:true,
+        },
+        status:{
+            type: DataTypes.BOOLEAN,
+            allowNull:true,
+        },
         image:{
             type:DataTypes.STRING,
             allowNull:true,
         },
+  
     })
 
     Products.associate = (models )=>{

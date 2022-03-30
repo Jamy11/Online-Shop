@@ -80,6 +80,16 @@ function ShowProduct() {
                                         </td>
                                         <td className="pl-24">
                                             <div className="flex items-center">
+                                                <p className="text-sm leading-none text-gray-600 ml-2">Price</p>
+                                            </div>
+                                        </td>
+                                        <td className="pl-24">
+                                            <div className="flex items-center">
+                                                <p className="text-sm leading-none text-gray-600 ml-2">Quantity</p>
+                                            </div>
+                                        </td>
+                                        <td className="pl-24">
+                                            <div className="flex items-center">
                                                 <p className="text-sm leading-none text-gray-600 ml-2">Shop Name</p>
                                             </div>
                                         </td>

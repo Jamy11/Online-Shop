@@ -18,6 +18,16 @@ const ShowSingleProduct = ({ item, deleteProduct }) => {
                 </td>
                 <td className="pl-24">
                     <div className="flex items-center">
+                        <p className="text-sm leading-none text-gray-600 ml-2">{item.price}</p>
+                    </div>
+                </td>
+                <td className="pl-24">
+                    <div className="flex items-center">
+                        <p className="text-sm leading-none text-gray-600 ml-2">{item.quantity}</p>
+                    </div>
+                </td>
+                <td className="pl-24">
+                    <div className="flex items-center">
                         <p className="text-sm leading-none text-gray-600 ml-2">{item.Shop.name}</p>
                     </div>
                 </td>
