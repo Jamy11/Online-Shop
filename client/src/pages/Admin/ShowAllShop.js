@@ -18,7 +18,7 @@ const ShowAllShop = () => {
             setShopList(res.data)
             setShopLoading(false)
         })
-    }, [shopList])
+    }, [])
 
     if (shopLoading) {
         return (
@@ -34,11 +34,13 @@ const ShowAllShop = () => {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-
+            if (res.data === 'SUCCESS') {
+                setShopList(shopList.filter(item => item.id !== id))
+            }
         })
     }
 
-    // console.log(shopList)
+    console.log(shopList)
     return (
         <>
             <div>

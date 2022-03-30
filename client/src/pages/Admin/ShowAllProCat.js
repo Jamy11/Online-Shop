@@ -1,26 +1,27 @@
 import React, { useEffect } from 'react'
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
-import UserList from '../../components/TableItem/Admin/UserList';
+import ShowSingelShop from '../../components/TableItem/Admin/ShowSingelShop';
+import ShowSingleProCat from '../../components/TableItem/Admin/ShowSingleProCat';
 
-const ShowAllUsers = () => {
 
-    const { userList,
-        setUserList,
-        userLoading,
-        setUserLoading } = useAuth()
+const ShowAllShop = () => {
+    const { productCatagoryList,
+        setProductCatagoryList,
+        productCatagoryLoading,
+        setProductCatagoryLoading } = useAuth()
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/all-users`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/all-pro-cat`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            setUserList(res.data)
-            setUserLoading(false)
+            setProductCatagoryList(res.data)
+            setProductCatagoryLoading(false)
         })
-    }, [userList])
+    }, [])
 
-    if (userLoading) {
+    if (productCatagoryLoading) {
         return (
             <>
                 <h1 className="mt-24">Loading</h1>
@@ -28,18 +29,20 @@ const ShowAllUsers = () => {
         )
     }
 
-    const deleteUser = (id) => {
-        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/delete/${id}`, {
+    const deleteProCategory = (id) => {
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/all-pro-cat/delete/${id}`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
             if (res.data === 'SUCCESS') {
-                setUserList(userList.filter(item => item.id !== id))
+                setProductCatagoryList(productCatagoryList.filter(item => item.id !== id))
             }
+
         })
     }
 
+    console.log(productCatagoryList)
     return (
         <>
             <div>
@@ -76,25 +79,32 @@ const ShowAllUsers = () => {
 
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">User Email</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Product Category Name</p>
                                             </div>
                                         </td>
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-medium leading-none text-gray-700 mr-2">User Name</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Name</p>
+                                            </div>
+                                        </td>
+
+                                        <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Id</p>
                                             </div>
                                         </td>
 
                                         <td>
                                             <div className="relative px-5 pt-2">
                                                 <div className="flex items-center">
-                                                    <p className="text-sm leading-none text-gray-600 ml-2">Delete</p>
+                                                    <p className="text-sm leading-none font-bold text-gray-600 ml-2">Delete</p>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr className="h-3" />
-                                    {userList.map(user => <UserList key={user.id} user={user} deleteUser={deleteUser} />)}
+                                    {productCatagoryList.map(procat => <ShowSingleProCat key={procat.id} procat={procat} deleteProCategory={deleteProCategory} />)}
+
                                 </tbody>
                             </table>
                         </div>
@@ -110,4 +120,4 @@ const ShowAllUsers = () => {
     )
 }
 
-export default ShowAllUsers
+export default ShowAllShop
