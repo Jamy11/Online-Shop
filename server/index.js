@@ -15,6 +15,9 @@ app.use("/shop", require('./routes/ShopKeeper/Shops'));
 app.use("/product-catagory", require('./routes/ShopKeeper/ProductCatagory'));
 app.use("/products", require('./routes/ShopKeeper/Products'));
 
+//admin route
+app.use("/admin", require('./routes/Admin/Admin'));
+
 app.get('/', (req, res) => {
     res.send('Server Started!')
 })

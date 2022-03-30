@@ -15,6 +15,9 @@ const useAllState = () => {
     const [productList, setProductList] = useState({});
     const [productLoading, setProductLoading] = useState(true);
 
+    const [userList, setUserList] = useState({});
+    const [userLoading, setUserLoading] = useState(true);
+
     const logOut = () => {
         localStorage.removeItem('accessToken')
         setUser({})
@@ -61,7 +64,11 @@ const useAllState = () => {
         productList, 
         setProductList,
         productLoading, 
-        setProductLoading
+        setProductLoading,
+        userList, 
+        setUserList,
+        userLoading,
+        setUserLoading
     }
 }
 
