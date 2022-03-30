@@ -25,6 +25,7 @@ import AddAdmin from "../Admin/AddAdmin";
 import ShowAllUsers from "../Admin/ShowAllUsers";
 import ShowAllShop from "../Admin/ShowAllShop";
 import ShowAllProCat from "../Admin/ShowAllProCat";
+import ShowAllProduct from "../Admin/ShowAllProduct";
 
 
 
@@ -49,8 +50,7 @@ export default function CommonDashboard() {
               <Route path="/dashboard/all-users" component={ShowAllUsers} />
               <Route path="/dashboard/show-all-shops" component={ShowAllShop} />
               <Route path="/dashboard/show-all-product-catagory" component={ShowAllProCat} />
-              <Route path="/dashboard/show-all-product" component={ShowAllUsers} />
-              <Route path="/dashboard/tables" component={Tables} />
+              <Route path="/dashboard/show-all-product" component={ShowAllProduct} />
               <Redirect from="/dashboard/" to="/dashboard/admin" />
             </Switch> :
             user.type === 'ShopKeeper' ?

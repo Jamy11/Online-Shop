@@ -40,7 +40,7 @@ const ShowAllShop = () => {
         })
     }
 
-    console.log(shopList)
+    // console.log(shopList)
     return (
         <>
             <div>
@@ -78,6 +78,11 @@ const ShowAllShop = () => {
                                         <td className>
                                             <div className="flex items-center pl-5">
                                                 <p className="text-base font-bold leading-none text-gray-700 mr-2">Shop Name</p>
+                                            </div>
+                                        </td>
+                                        <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Email</p>
                                             </div>
                                         </td>
                                         <td className>

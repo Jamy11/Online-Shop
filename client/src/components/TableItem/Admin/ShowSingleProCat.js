@@ -21,6 +21,11 @@ const ShowSingleProCat = ({procat,deleteProCategory}) => {
                         <p className="text-base font-medium leading-none text-gray-700 mr-2">{procat.User.username === ('' || null) ? 'Not Given' : procat.User.username}</p>
                     </div>
                 </td>
+                <td className>
+                    <div className="flex items-center pl-5">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">{procat.User.id}</p>
+                    </div>
+                </td>
                 <td>
                     <div className="relative px-5 pt-2">
 

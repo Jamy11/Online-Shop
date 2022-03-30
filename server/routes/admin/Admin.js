@@ -50,4 +50,19 @@ router.delete('/all-pro-cat/delete/:id', validateToken, async (req, res) => {
     })
 })
 
+router.get('/all-products', validateToken, async (req, res) => {
+    const procat = await Products.findAll({ include: [Users,Shops, ProductCatagory] })
+    res.json(procat)
+})
+
+router.delete('/all-products/delete/:id', validateToken, async (req, res) => {
+    const id = req.params.id
+    const result = Products.destroy({ where: { id: id } }).then(response => {
+        res.json("SUCCESS")
+    }).catch(err => {
+        console.log(err)
+        res.json()
+    })
+})
+
 module.exports = router

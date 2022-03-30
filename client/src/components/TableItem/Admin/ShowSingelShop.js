@@ -21,6 +21,11 @@ const ShowSingelShop = ( { shop , deleteShop}) => {
                         <p className="text-base font-medium leading-none text-gray-700 mr-2">{shop.User.username === ('' || null) ? 'Not Given' : shop.User.username}</p>
                     </div>
                 </td>
+                <td className>
+                    <div className="flex items-center pl-5">
+                        <p className="text-base font-medium leading-none text-gray-700 mr-2">{shop.User.id}</p>
+                    </div>
+                </td>
                 <td>
                     <div className="relative px-5 pt-2">
 

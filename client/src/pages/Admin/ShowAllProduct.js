@@ -2,26 +2,25 @@ import React, { useEffect } from 'react'
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 import ShowSingelShop from '../../components/TableItem/Admin/ShowSingelShop';
-import ShowSingleProCat from '../../components/TableItem/Admin/ShowSingleProCat';
+import ShowSingelProduct from '../../components/TableItem/Admin/ShowSingelProduct';
 
-
-const ShowAllShop = () => {
-    const { productCatagoryList,
-        setProductCatagoryList,
-        productCatagoryLoading,
-        setProductCatagoryLoading } = useAuth()
+const ShowAllProduct = () => {
+    const { productList,
+        setProductList,
+        productLoading,
+        setProductLoading } = useAuth()
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/all-pro-cat`, {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/all-products`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
-            setProductCatagoryList(res.data)
-            setProductCatagoryLoading(false)
+            setProductList(res.data)
+            setProductLoading(false)
         })
     }, [])
 
-    if (productCatagoryLoading) {
+    if (productLoading) {
         return (
             <>
                 <h1 className="mt-24">Loading</h1>
@@ -29,20 +28,19 @@ const ShowAllShop = () => {
         )
     }
 
-    const deleteProCategory = (id) => {
-        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/all-pro-cat/delete/${id}`, {
+    const deleteProduct = (id) => {
+        axios.delete(`${process.env.REACT_APP_BACKEND_URL}/admin/all-products/delete/${id}`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then(res => {
             if (res.data === 'SUCCESS') {
-                setProductCatagoryList(productCatagoryList.filter(item => item.id !== id))
+                setProductList(productList.filter(item => item.id !== id))
             }
-
         })
     }
 
-    console.log(productCatagoryList)
+    console.log(productList)
     return (
         <>
             <div>
@@ -77,11 +75,24 @@ const ShowAllShop = () => {
                                 <tbody>
                                     <tr className="h-16 border border-gray-100 rounded">
 
+                                    <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Product Name</p>
+                                            </div>
+                                        </td>
+
                                         <td className>
                                             <div className="flex items-center pl-5">
                                                 <p className="text-base font-bold leading-none text-gray-700 mr-2">Product Category Name</p>
                                             </div>
                                         </td>
+
+                                        <td className>
+                                            <div className="flex items-center pl-5">
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Shop Name</p>
+                                            </div>
+                                        </td>
+
                                         <td className>
                                             <div className="flex items-center pl-5">
                                                 <p className="text-base font-bold leading-none text-gray-700 mr-2">User Email</p>
@@ -109,7 +120,7 @@ const ShowAllShop = () => {
                                         </td>
                                     </tr>
                                     <tr className="h-3" />
-                                    {productCatagoryList.map(procat => <ShowSingleProCat key={procat.id} procat={procat} deleteProCategory={deleteProCategory} />)}
+                                    {productList.map(product => <ShowSingelProduct key={product.id} product={product} deleteProduct={deleteProduct} />)}
 
                                 </tbody>
                             </table>
@@ -118,12 +129,12 @@ const ShowAllShop = () => {
                 </div>
                 <style>
                     {` .checkbox:checked + .check-icon {
-                display: flex;
-            }`}
+        display: flex;
+    }`}
                 </style>
             </div>
         </>
     )
 }
 
-export default ShowAllShop
+export default ShowAllProduct
