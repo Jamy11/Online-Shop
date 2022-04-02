@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import { Link, Route } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import logo from '../../images/logo.png'
-
-const Hero = () => {
+import SingleShop from "../SingleShop/SingleShop";
+import { useHistory } from "react-router-dom";
+const Hero = ({ resuts }) => {
     const [show, setShow] = useState(false);
-    const { user , logOut} = useAuth()
+    const { user, logOut } = useAuth()
+    const { isLoading, data } = resuts
+    // console.log(data)
+
+    const history  = useHistory()
+    const takeToShop = (id) =>{
+        history.push(`shop-no/${id}`)
+    }
     return (
         <div>
             <div className="bg-gray-100 overflow-y-hidden" style={{ minHeight: 700 }}>
@@ -55,10 +63,10 @@ const Hero = () => {
                                         <li className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                                             <Link to='/contactUs'>Contact Us</Link>
                                         </li>
-                                        {user?.email && 
-                                        <li style={{color:'red'}} className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10" onClick={logOut}>
-                                           Log Out
-                                        </li>
+                                        {user?.email &&
+                                            <li style={{ color: 'red' }} className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10" onClick={logOut}>
+                                                Log Out
+                                            </li>
 
 
                                         }
@@ -72,7 +80,22 @@ const Hero = () => {
                         <div className="container mx-auto flex flex-col items-center py-12 sm:py-24">
                             <div className="w-11/12 sm:w-2/3 lg:flex justify-center items-center flex-col  mb-5 sm:mb-10">
                                 <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-gray-800 font-black leading-7 md:leading-10">
-                                    <span className="text-indigo-700"> Online Shop </span>
+                                    <span className="text-indigo-700"> {isLoading && 'Online Shop'} </span>
+
+                                    {/* single shop component  */}
+
+                                    <div className="pb-16">
+                                        <div className="flex justify-center items-center">
+                                            <div className="2xl:mx-auto 2xl:container py-12 px-4 sm:px-6 xl:px-20 2xl:px-0 w-full">
+                                                <div className="flex flex-col jusitfy-center items-center space-y-10">
+                                                    <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-4 md:gap-x-8 h-full  w-full">
+                                                    {/* <SingleShop /> */}
+                                                    {data?.data.map(item=><SingleShop id={item.id} shop={item} takeToShop={takeToShop}/>)}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </h3>
                                 {/* <p className="mt-5 sm:mt-10 lg:w-10/12 text-gray-400 font-normal text-center text-sm sm:text-lg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum ut rem suscipit. Voluptates nesciunt doloribus omnis voluptatum officia dolores odio at, veniam explicabo, adipisci laboriosam optio similique itaque! Nulla, molestiae! </p>
