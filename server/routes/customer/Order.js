@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { validateToken } = require('../../middleware/AuthMiddleware')
-const { Users, Shops } = require('../../models')
+const { Users, Shops, Products } = require('../../models')
 // register
 
 router.get('/', async (req, res) => {
@@ -10,8 +10,12 @@ router.get('/', async (req, res) => {
     res.json(shops)
 })
 
-router.put('/asda', validateToken, async (req, res) => {
+router.get('/selectedshop/:s_id', async (req, res) => {
+    const s_id = req.params.s_id
 
+    const shopProducts = await Shops.findOne({ where: { id: s_id }, include: [ Products] }) 
+
+    res.json(shopProducts)
 })
 
 

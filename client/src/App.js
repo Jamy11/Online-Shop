@@ -9,6 +9,7 @@ import Register from './pages/public/Register';
 import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { QueryClient, QueryClientProvider } from 'react-query'
+import ShopProduct from './pages/public/ShopProduct';
 
 
 const queryClient = new QueryClient()
@@ -29,7 +30,7 @@ function App() {
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/contactUs' component={ContactUs} />
-              <Route exact path='/shop-no/:id' component={ContactUs} />
+              <Route exact path='/shop-no/:id' component={ShopProduct} />
             </Switch>
           </Router>
         </QueryClientProvider>
