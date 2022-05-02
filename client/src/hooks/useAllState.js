@@ -20,7 +20,9 @@ const useAllState = () => {
 
     const logOut = () => {
         localStorage.removeItem('accessToken')
+        sessionStorage.removeItem('cartProduct')
         setUser({})
+        setUserType('')
         setIsLoading(false)
     }
 
@@ -44,8 +46,9 @@ const useAllState = () => {
 
     return {
         user,
-        userType,
         setUser,
+        userType,
+        setUserType,
         logOut,
         isLoading,
         setIsLoading,

@@ -8,7 +8,7 @@ const SingleShopProduct = ({ products }) => {
     const [quantity, setQuantity] = useState(products.quantity)
     const [currentQuntity, setCurrentQuntity] = useState(products.quantity)
     const history = useHistory()
-    const { user } = useAuth()
+    const { user, userType } = useAuth()
     function prettyDate(date) {
 
         let previousDate = Date(date).split(' ')
@@ -18,7 +18,6 @@ const SingleShopProduct = ({ products }) => {
 
     const getCart = window.sessionStorage.getItem("cartProduct");
     const currentCart = JSON.parse(getCart)
-    // console.log(currentCart)
     useEffect(() => {
         if (currentCart === null) {
             return
@@ -39,8 +38,9 @@ const SingleShopProduct = ({ products }) => {
 
     const addToCart = (product) => {
 
-        if(!user?.email){
+        if(!user?.email || userType !== 'Customer'){
             history.push('/login')
+            return
         }
         if (quantity > 0) {
             setQuantity(quantity - 1)

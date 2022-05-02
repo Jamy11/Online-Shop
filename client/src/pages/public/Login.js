@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-    const { setUser , setIsloading} = useAuth()
+    const { setUser, setIsloading, setUserType } = useAuth()
     const history = useHistory()
     const initialValues = {
         email: '',
@@ -29,6 +29,7 @@ const Login = () => {
             } else {
                 localStorage.setItem("accessToken", response.data.accessToken);
                 setUser(response.data.user)
+                setUserType(response.data.user.type)
                 history.push("/");
             }
         });
