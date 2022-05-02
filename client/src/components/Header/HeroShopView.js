@@ -7,11 +7,15 @@ import { useHistory } from "react-router-dom";
 import ShowAllProduct from "../Customer/ShowAllProduct/ShowAllProduct";
 const HeroShopView = ({ results }) => {
     const [show, setShow] = useState(false);
-    const { user, logOut } = useAuth()
+    const { user, logOut, userType } = useAuth()
     const { isLoading, data } = results
 
 
     const history = useHistory()
+
+    // show cart page logic
+    const getCart = window.sessionStorage.getItem("cartProduct");
+    const currentCart = JSON.parse(getCart)
     return (
         <div>
             <div className="bg-gray-100 overflow-y-hidden" style={{ minHeight: 700 }}>
@@ -61,6 +65,13 @@ const HeroShopView = ({ results }) => {
                                         <li className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
                                             <Link to='/contactUs'>Contact Us</Link>
                                         </li>
+                                        {(user?.email && currentCart !== null && userType === 'Customer') &&
+                                            <li style={{ color: 'blue' }} className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10" >
+                                                <Link to='/cart'>Cart</Link>
+                                            </li>
+
+
+                                        }
                                         {user?.email &&
                                             <li style={{ color: 'red' }} className=" font-bold text-gray-700 hover:text-gray-900 cursor-pointer text-base lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10" onClick={logOut}>
                                                 Log Out
@@ -80,7 +91,7 @@ const HeroShopView = ({ results }) => {
 
                     <>
 
-                        <ShowAllProduct results={results}/>
+                        <ShowAllProduct results={results} />
                     </>
 
                 }

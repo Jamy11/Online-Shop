@@ -25,6 +25,9 @@ function App() {
               <PrivateRoute path='/dashboard'>
                 <CommonDashboard />
               </PrivateRoute>
+              <PrivateRoute path='/cart'>
+                <div> cart </div>
+              </PrivateRoute>
               {/* <Route exact path='/dashboard' component={Dashboard} /> */}
               {/* <Route path="/admin" component={Admin} /> */}
               <Route exact path='/login' component={Login} />
