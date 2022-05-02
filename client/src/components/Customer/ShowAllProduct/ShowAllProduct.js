@@ -4,7 +4,6 @@ import SingleShopProduct from './SingleShopProduct'
 const ShowAllProduct = ({ results }) => {
     const { isLoading, data } = results
 
-    console.log(data.data.Products)
     return (
         <>
             <div className="bg-gray-100 ">
