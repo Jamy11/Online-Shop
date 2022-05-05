@@ -10,6 +10,7 @@ import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import ShopProduct from './pages/public/ShopProduct';
+import Cart from './pages/Customer/Cart';
 
 
 const queryClient = new QueryClient()
@@ -26,7 +27,7 @@ function App() {
                 <CommonDashboard />
               </PrivateRoute>
               <PrivateRoute path='/cart'>
-                <div> cart </div>
+                <Cart />
               </PrivateRoute>
               {/* <Route exact path='/dashboard' component={Dashboard} /> */}
               {/* <Route path="/admin" component={Admin} /> */}

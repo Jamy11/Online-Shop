@@ -30,7 +30,7 @@ const SingleShopProduct = ({ products }) => {
         })
         if (exist) {
             const loadedCart = currentCart.filter(item => item.id === products.id)
-            console.log(loadedCart)
+            // console.log(loadedCart)
             setQuantity(currentQuntity - loadedCart[0].quantity)
         }
     }, [])
