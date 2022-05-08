@@ -47,6 +47,13 @@ router.post('/placeorder', validateToken, async (req, res) => {
             res.json({ error: "Order Placing Failed." })
         })
 
+    Products.update({ ...data }, { where: { id: id } }).then(result => {
+        console.log(result)
+        res.json('updated')
+    }).catch(err =>
+        res.json({ error: ' UserName Must be uniqe.' })
+    )
+
     res.json("SUCCESS")
 })
 

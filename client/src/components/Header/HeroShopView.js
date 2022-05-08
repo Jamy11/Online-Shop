@@ -86,7 +86,7 @@ const HeroShopView = ({ results }) => {
                         </div>
                     </nav>
                 </dh-component>
-                <h1 className="text-lg font-semibold p-5 m-5">iphone XS</h1>
+                <h1 className="text-lg font-semibold p-5 m-5">All Product</h1>
                 {isLoading ? <h1 className="text-lg font-semibold p-5 m-5 text-red-600">Loading</h1> :
 
                     <>
