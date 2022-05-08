@@ -11,5 +11,14 @@ module.exports = ( sequelize, DataTypes) =>{
         },        
     })
 
+    OrderItems.associate = ( models) =>{
+
+
+        // foreign key access
+        OrderItems.belongsTo( models.Orders, {
+            foreignKey: 'OrderUniqueId',
+        })
+    }
+
     return OrderItems
 }

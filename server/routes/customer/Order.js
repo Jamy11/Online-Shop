@@ -18,6 +18,9 @@ router.get('/selectedshop/:s_id', async (req, res) => {
     res.json(shopProducts)
 })
 
+router.post('/placeorder', async (req, res) => {
+    console.log(req.body)
+})
 
 
 module.exports = router

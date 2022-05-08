@@ -10,6 +10,11 @@ module.exports = ( sequelize, DataTypes) =>{
             allowNull:true,
         },
         
+        OrderUniqueId:{
+            type:DataTypes.STRING,
+            allowNull:true,
+        },
+        
     })
 
     Orders.associate = ( models) =>{
