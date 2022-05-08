@@ -26,6 +26,7 @@ import ShowAllUsers from "../Admin/ShowAllUsers";
 import ShowAllShop from "../Admin/ShowAllShop";
 import ShowAllProCat from "../Admin/ShowAllProCat";
 import ShowAllProduct from "../Admin/ShowAllProduct";
+import Orders from "../Customer/Orders";
 
 
 
@@ -73,11 +74,11 @@ export default function CommonDashboard() {
               :
               // customer route
               <Switch>
-                <Route path="/dashboard/admin" component={Dashboard} />
-                <Route path="/admin/maps" component={Maps} />
-                <Route path="/admin/settings" component={Settings} />
-                <Route path="/admin/tables" component={Tables} />
-                {/* <Redirect from="/dashboard" to="/admin/dashboard" /> */}
+                <Route path="/dashboard/customer" component={Profile} />
+                <Route path="/dashboard/edit-profile" component={EditProfile} />
+                <Route path="/dashboard/orders" component={Orders} />
+
+                <Redirect from="/dashboard" to="/dashboard/customer" />
               </Switch>}
 
 

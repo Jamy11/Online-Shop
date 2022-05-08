@@ -50,5 +50,12 @@ router.post('/placeorder', validateToken, async (req, res) => {
     res.json("SUCCESS")
 })
 
+router.get('/getorder', validateToken, async (req, res) => {
+    const { id } = req.user
+    const orders = await Orders.findAll({ where: { UserId: id } })
+    // console.log(shops)
+    res.json(orders)
+})
+
 
 module.exports = router

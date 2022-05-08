@@ -100,7 +100,7 @@ export default function CustomerSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/dashboard/admin"
+                  to="/dashboard/customer"
                 >
                   <i
                     className={
@@ -122,7 +122,7 @@ export default function CustomerSidebar() {
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/settings"
+                  to="/dashboard/edit-profile"
                 >
                   <i
                     className={
@@ -132,73 +132,29 @@ export default function CustomerSidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Add Admmin
+                  Edit Profile
                 </Link>
               </li>
-
+              
               <li className="items-center">
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
+                    (window.location.href.indexOf("/dashboard/orders") !== -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/tables"
+                  to="/dashboard/orders"
                 >
                   <i
                     className={
-                      "fas fa-shopping-cart mr-2 text-base " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
+                      "fas fa-building mr-2 text-base " +
+                      (window.location.href.indexOf("/dashboard/orders") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Show All Orders
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/maps"
-                >
-                  <i
-                    className={
-                      "fas fa-user-friends mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  All Product
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to="/admin/maps"
-                >
-                  <i
-                    className={
-                      "fas fa-users mr-2 text-lg" +
-                      (window.location.href.indexOf("/admin/maps") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  All User
+                  Show My Orders
                 </Link>
               </li>
             </ul>

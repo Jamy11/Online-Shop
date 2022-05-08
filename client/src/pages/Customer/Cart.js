@@ -3,12 +3,12 @@ import SingelCart from '../../components/Customer/Cart/SingelCart';
 import HeroCart from '../../components/Header/HeroCart'
 import useAuth from '../../hooks/useAuth';
 import axios from "axios";
-
+import { useHistory } from 'react-router-dom';
 
 const Cart = () => {
 
     const { user, } = useAuth()
-
+    const history = useHistory()
     const getCart = window.sessionStorage.getItem("cartProduct");
     const currentCart = JSON.parse(getCart)
 
@@ -29,7 +29,8 @@ const Cart = () => {
                 accessToken: localStorage.getItem("accessToken"),
             }
         }).then((res) => {
-            console.log(res)
+            sessionStorage.removeItem('cartProduct')
+            history.push('/')
         });
     }
     return (
