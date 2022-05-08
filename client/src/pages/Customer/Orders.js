@@ -5,7 +5,7 @@ import ShowSingleOrder from '../../components/TableItem/Customer/ShowSingleOrder
 const Orders = () => {
 
     const [orders, setOrders] = useState([])
-    const [orderLoading, setOrderLoading] = useState([])
+    const [orderLoading, setOrderLoading] = useState(true)
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/getorder`, {
@@ -18,11 +18,10 @@ const Orders = () => {
         })
     }, [])
 
-    console.log(orders)
     return (
         <>
             {/* hello iu love you */}
-            
+
             {/* <ShowSingleOrder /> */}
             <div>
                 <div className="sm:px-6 w-full mt-24">
@@ -87,7 +86,8 @@ const Orders = () => {
                                         </td>
                                     </tr>
                                     <tr className="h-3" />
-                                    {orders.map(item => <ShowSingleOrder key={item.id} item={item} />)}
+                                    {!orderLoading &&
+                                        orders.map(item => <ShowSingleOrder key={item.id} item={item} />)}
 
                                 </tbody>
                             </table>

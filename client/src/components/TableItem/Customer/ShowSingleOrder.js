@@ -2,7 +2,7 @@ import React from 'react'
 import useAuth from '../../../hooks/useAuth'
 
 const ShowSingleOrder = ({ item }) => {
-    console.log(item)
+
     const { user } = useAuth()
     return (
         <>
