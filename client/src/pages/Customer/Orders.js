@@ -28,7 +28,7 @@ const Orders = () => {
                 <div className="sm:px-6 w-full mt-24">
                     <div className="px-4 md:px-10 py-4 md:py-7">
                         <div className="flex items-center justify-between">
-                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Shop List</p>
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Order List</p>
                         </div>
                     </div>
                     <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
@@ -58,19 +58,19 @@ const Orders = () => {
 
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Product Name</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Order ID</p>
                                             </div>
                                         </td>
 
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Product Category Name</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Total Paid</p>
                                             </div>
                                         </td>
 
                                         <td className>
                                             <div className="flex items-center pl-5">
-                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Shop Name</p>
+                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">Total Cost</p>
                                             </div>
                                         </td>
 
@@ -83,20 +83,6 @@ const Orders = () => {
                                         <td className>
                                             <div className="flex items-center pl-5">
                                                 <p className="text-base font-bold leading-none text-gray-700 mr-2">User Name</p>
-                                            </div>
-                                        </td>
-
-                                        <td className>
-                                            <div className="flex items-center pl-5">
-                                                <p className="text-base font-bold leading-none text-gray-700 mr-2">User Id</p>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div className="relative px-5 pt-2">
-                                                <div className="flex items-center">
-                                                    <p className="text-sm leading-none font-bold text-gray-600 ml-2">Delete</p>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr>
