@@ -19,9 +19,13 @@ module.exports = ( sequelize, DataTypes) =>{
 
     Orders.associate = ( models) =>{
    
-        Orders.hasMany( models.OrderItems, {
-            onDelete: "CASCADE",
-        }),
+        // Orders.hasMany( models.OrderItems, {
+        //     foreignKey: {
+        //         name:'OrderUniqueId',
+        //         type:DataTypes.STRING,
+        //     },
+        //     // foreignKeyConstraint:true
+        // }),
         Orders.hasMany( models.Transaction, {
             onDelete: "CASCADE",
         }),

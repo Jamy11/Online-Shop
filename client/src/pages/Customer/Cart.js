@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SingelCart from '../../components/Customer/Cart/SingelCart';
 import HeroCart from '../../components/Header/HeroCart'
 import useAuth from '../../hooks/useAuth';
+import axios from "axios";
 
 
 const Cart = () => {
@@ -15,8 +16,22 @@ const Cart = () => {
     if (currentCart !== null) {
         currentCart.map(item => sum.push(item.price * item .quantity))
     }
-    console.log(sum)
+    // console.log(sum)
     const totalSum = sum.reduce((a,b)=>a+b,0)
+
+    const placeOrder =() =>{
+        if (currentCart === null ){
+            return 
+        }
+        const data = {total_cost: totalSum, currentCart:currentCart}
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/placeorder`, data, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken"),
+            }
+        }).then((res) => {
+            console.log(res)
+        });
+    }
     return (
         <>
             <HeroCart />
@@ -60,7 +75,7 @@ const Cart = () => {
                                         <div class="w-8 h-8">
                                             <img class="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
                                         </div>
-                                        <div className="flex flex-col justify-start items-center">
+                                        <div className="flex flex-col justify-start items-center"  >
                                             <p className="text-lg leading-6 font-semibold text-gray-800">
                                                 Order Now
                                                 <br />
@@ -68,8 +83,9 @@ const Cart = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-full flex justify-center items-center">
-                                    <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Order now</button>
+                                <div className="w-full flex justify-center items-center" onClick={placeOrder}>
+                                    <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
+                                      Place your Order now</button>
                                 </div>
                             </div>
                         </div>
