@@ -10,7 +10,7 @@ const Hero = ({ resuts }) => {
     const { user, logOut, userType } = useAuth()
     const [q, setQ] = useState('')
     const { isLoading, data } = resuts
-    // console.log(data)
+
 
     const history = useHistory()
     const takeToShop = (id) => {
@@ -21,15 +21,10 @@ const Hero = ({ resuts }) => {
     const getCart = window.sessionStorage.getItem("cartProduct");
     const currentCart = JSON.parse(getCart)
 
-
-
     const search = (data) => {
-        console.log(data.filter(item=> item.name.toLowerCase().indexOf(q) > -1 ))
         return data.filter(item=> item.name.toLowerCase().indexOf(q) > -1 )
-
-        return data
-        // console.log(data?.data)
     }
+
     return (
         <div>
             <div className="bg-gray-100 overflow-y-hidden" style={{ minHeight: 700 }}>
