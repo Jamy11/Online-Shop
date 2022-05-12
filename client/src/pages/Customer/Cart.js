@@ -51,7 +51,10 @@ const Cart = () => {
         const { status } = response.data;
         if (status === "success") {
             toast("Success! Check email for details", { type: "success" });
-            console.log("From here:");
+            alert('Order Placed')
+            sessionStorage.removeItem('cartProduct')
+            history.push('/')
+            // console.log("From here:");
 
         } else {
             toast("Something went wrong", { type: "error" });
