@@ -4,6 +4,8 @@ import HeroCart from '../../components/Header/HeroCart'
 import useAuth from '../../hooks/useAuth';
 import axios from "axios";
 import { useHistory } from 'react-router-dom';
+import StripeCheckout from "react-stripe-checkout";
+import { toast } from "react-toastify";
 
 const Cart = () => {
 
@@ -14,24 +16,46 @@ const Cart = () => {
 
     const sum = []
     if (currentCart !== null) {
-        currentCart.map(item => sum.push(item.price * item .quantity))
+        currentCart.map(item => sum.push(item.price * item.quantity))
     }
-    // console.log(sum)
-    const totalSum = sum.reduce((a,b)=>a+b,0)
+    const totalSum = sum.reduce((a, b) => a + b, 0)
 
-    const placeOrder =() =>{
-        if (currentCart === null ){
-            return 
+    // const placeOrder = async () => {
+    //     if (currentCart === null) {
+    //         return
+    //     }
+    //     const data = { total_cost: totalSum, currentCart: currentCart }
+    //     await axios.post(`${process.env.REACT_APP_BACKEND_URL}/placeorder`, data, {
+    //         headers: {
+    //             accessToken: localStorage.getItem("accessToken"),
+    //         }
+    //     }).then((res) => {
+    //         sessionStorage.removeItem('cartProduct')
+    //         history.push('/')
+    //     });
+    // }
+
+    async function handleToken(token, addresses) {
+        if (currentCart === null) {
+            return
         }
-        const data = {total_cost: totalSum, currentCart:currentCart}
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/placeorder`, data, {
+        const data = { total_cost: totalSum, currentCart: currentCart, token: token }
+
+        const response = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/placeorder`, data, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             }
-        }).then((res) => {
-            sessionStorage.removeItem('cartProduct')
-            history.push('/')
-        });
+        }
+        );
+        const { status } = response.data;
+        if (status === "success") {
+            toast("Success! Check email for details", { type: "success" });
+            console.log("From here:");
+
+        } else {
+            toast("Something went wrong", { type: "error" });
+        }
     }
     return (
         <>
@@ -84,9 +108,17 @@ const Cart = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="w-full flex justify-center items-center" onClick={placeOrder}>
-                                    <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
-                                      Place your Order now</button>
+                                <div className="w-full flex justify-center items-center" >
+                                    <StripeCheckout
+                                        stripeKey="pk_test_51KxmxpGZcKqiV6Jyk2MhxBxkxPN43DWXb5PUL19b7NK8JXBLk5qCKxLCg6QtdNaJ36eOVtBmOGk9vkECmOrFeZ4Q00x0OQ8O5K"
+                                        token={handleToken}
+                                        amount={totalSum * 100}
+                                        name="Onek Dokan Payment"
+                                    // billingAddress
+                                    // shippingAddress
+                                    />
+                                    {/* <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
+                                        Place your Order now</button> */}
                                 </div>
                             </div>
                         </div>

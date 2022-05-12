@@ -77,6 +77,10 @@ module.exports = ( sequelize, DataTypes) =>{
             onDelete: "CASCADE",
             allowNull:false,
         })
+        Users.hasMany( models.Transaction, {
+            onDelete: "CASCADE",
+            allowNull:false,
+        })
     }
 
 

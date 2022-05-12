@@ -4,11 +4,17 @@ module.exports = (sequelize, DataTypes) =>{
             type:DataTypes.STRING,
             allowNull:true,
         },
-        liability:{
+        OrderUniqueId:{
             type:DataTypes.STRING,
             allowNull:true,
-        }
+        },
     })
+
+    Transaction.associate = (models )=>{
+        Transaction.belongsTo( models.Users, {
+            foreignKey: 'UserId',
+        })
+    }
 
     return Transaction
 }
